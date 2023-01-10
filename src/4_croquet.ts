@@ -21,7 +21,8 @@ type Ball = Hedgehog | CricketBall | CroquetBall | Football;
 type Mallet = Flamingo | Hammer | CroquetMallet;
 
 // 👉 FIXME ❌ We're defining a TBall and a TMallet, but not specifying anything about them...
-interface Croquet<TBall, TMallet> {
+//interface Croquet<TBall, TMallet> {
+interface Croquet<TBall extends Ball, TMallet extends Mallet> {
 	hit: (ball: TBall, mallet: TMallet) => boolean;
 }
 
@@ -30,8 +31,9 @@ export function playCroquet(): void {
 	print('The Queen of Hearts 👑❤ invites you to play croquet 🏑');
 
 	// 👉 FIXME ❌ Our ball and mallet are made of numbers.
-	const game: Croquet<number, number> = {
-		hit: (ball, mallet) => {
+	//const game: Croquet<number, number> = {
+	const game: Croquet<Ball, Mallet> = {
+			hit: (ball, mallet) => {
 			let score = 0;
 
 			// 💡 Remember TypeScript only exists at compile time, so when this code *runs* the type we want (Ball)
@@ -53,7 +55,8 @@ export function playCroquet(): void {
 	};
 
 	// 👉 FIXME ❌ These parameters to hit() aren't right!
-	if (game && game.hit && game.hit(2468, 8642)) {
+	//if (game && game.hit && game.hit(2468, 8642)) {
+	if (game && game.hit && game.hit('Hedgehog', 'Flamingo')) {
 		print('🏆 Success! You scored! 🏆');
 		print('Time to chat with the queen...');
 		return askQuestion('Press ENTER to continue! ', meetTheQueen);
