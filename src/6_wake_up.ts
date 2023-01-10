@@ -46,5 +46,8 @@ export function wakeUp(): void {
 
 function tryToWakeUp(): WakeUp {
 	// 👉 FIXME ❌
-	return {};
+	//let wakeUp: WakeUp;
+	//wakeUp= {wake:{wake:{wake:{canWake:'Yes'}}}};
+	//return {};
+	return {wake:{wake:{wake:{canWake:'Yes'}}}};;
 }
