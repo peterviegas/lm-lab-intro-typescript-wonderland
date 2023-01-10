@@ -1,6 +1,9 @@
 import { endAdventure } from '..';
 import { playCroquet } from './4_croquet';
 import { askQuestion, clear, print } from '../console';
+import { setMaxListeners } from 'events';
+import { setFlagsFromString } from 'v8';
+import { type } from 'os';
 
 // using const assertions to create a type
 const drinks = ['Coffee', 'Tea', 'Water', 'Lemonade'] as const;
@@ -21,7 +24,21 @@ type Table = {
 
 function setTheTable(): Table {
 	// 👉 FIXME ❌
-	return { seats: [] };
+	const table: Table= {
+		seats: []
+	}
+
+	//table.seats.map((drink)=> { type: drink, poured: true})
+	//drinks.map((drink)=> drink)
+	//table[0].seats.push({drink:{type:'Coffee',poured:true}})
+
+	//drinks.forEach((item)=> table.seats.push({drink:{type:item,poured:true}}))
+	drinks.forEach((item)=> table.seats.push({drink:{type:'Tea',poured:true}}))
+
+
+	//return { seats: [] };
+	return table;
+
 }
 
 export function attendATeaParty() {
@@ -32,6 +49,7 @@ export function attendATeaParty() {
 
 	const drinks = setTheTable();
 
+	//console.log('table', drinks, 'drinks.seats', drinks.seats, 'tamanho', drinks.seats.length)
 	if (!drinks || !drinks.seats || drinks.seats.length <= 0) {
 		print(`... but something went very wrong with the table. 😱`);
 		return endAdventure();
@@ -47,7 +65,9 @@ export function attendATeaParty() {
 	let properlySet = true;
 
 	drinks.seats.forEach((seat) => {
+		//console.log('seats', seat.drink.poured, ' tipo: ', seat.drink.type)
 		if (!seat.drink.poured || seat.drink.type !== 'Tea') {
+			//console.log('Dentro do if seats', seat.drink.poured, ' tipo: ', seat.drink.type)
 			properlySet = false;
 		}
 	});

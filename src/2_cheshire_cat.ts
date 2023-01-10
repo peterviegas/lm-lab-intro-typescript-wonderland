@@ -23,6 +23,8 @@ export function meetTheCheshireCat(): void {
 
 	// 👉 FIXME ❌
 	// 		Add some code here which allows you to progress *without* altering any other code in this file
+	theCat.name = 'Leo';
+	theCat.expression = expressions[2];
 	// 👉 END FIXME ❌
 
 	print(
