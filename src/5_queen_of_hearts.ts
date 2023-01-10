@@ -1,6 +1,7 @@
 import { endAdventure } from '..';
 import { wakeUp } from './6_wake_up';
 import { askQuestion, clear, print } from '../console';
+import { stringify } from 'querystring';
 
 const verdicts = ['Guilty', 'Not Guilty'] as const;
 type Verdict = typeof verdicts[number];
@@ -16,7 +17,9 @@ export function meetTheQueen(): void {
 
 	let guilty: boolean = false;
 
-	let witnesses: Witness[] = []; // 👉 FIXME ❌ - call getWitnesses here
+	//let witnesses: Witness[] = []; // 👉 FIXME ❌ - call getWitnesses here
+	let witnesses: Witness[] = getWitnesses(); // 👉 FIXME ❌ - call getWitnesses here
+	//console.log('witnesses: ', witnesses)
 
 	if (!witnesses || witnesses.length === 0) {
 		print(`No witnesses have come forward to defend you.`);
@@ -46,6 +49,13 @@ export function meetTheQueen(): void {
 }
 
 // 👉 FIXME ❌ - this function needs writing to meet the above criteria
-function getWitnesses(): any {
-	return [];
+//function getWitnesses(): any {
+function getWitnesses(): Witness[] {
+	//return [];
+	let witness: Witness[]=[];
+
+	const witnessesName = ['The White Rabbit', 'The King of Hearts', 'The Cheshire Cat', 'The Duchess'];
+	witnessesName.forEach((item)=>witness.push({name: item, giveEvidence:()=> 'Not Guilty'}))
+
+	return witness;
 }
